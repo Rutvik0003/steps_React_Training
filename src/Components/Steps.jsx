@@ -73,10 +73,25 @@ const Button = styled.button`
     cursor: pointer;
 `
 
+const Toggle = styled.button`
+    height: 50px;
+    width: 120px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 22px;
+    padding: 10px 10px;
+    background-color:  #00246B;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    margin-top: 50px;
+    cursor: pointer;
+`
+
 
 
 const Steps = () => {
     const [CurrentStep, setCurrentStep] = useState(1);
+    const [isOpen,SetIsOpen] = useState(true);
 
     const PreviousBtn =() =>{
         if(CurrentStep >1){
@@ -96,6 +111,8 @@ const Steps = () => {
     return (
 
     <Container>
+      {isOpen && 
+      (<>
       <NumberContainer>
       <Number isActive={CurrentStep >= 1}>1</Number>
       <Number isActive={CurrentStep >= 2}>2</Number>
@@ -108,6 +125,10 @@ const Steps = () => {
       <Button onClick={NextBtn}>Next</Button>
 
       </BtnContainer>
+      </>)}
+      <Toggle onClick={()=>SetIsOpen(!isOpen)}>
+      {isOpen ? "Close" : "Open"}
+      </Toggle>
 
     </Container>
   );
